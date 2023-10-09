@@ -19,20 +19,21 @@ function inputResult(event) {
     return result;
   }
 }
+function autoFill() {
+  const storage = localStorage.getItem(KEY);
+  if (storage !== null) {
+    const text = JSON.parse(storage);
+    form.elements.email.value = text.email;
+    form.elements.message.value = text.message;
+  }
+}
 function handlerSubmit(event) {
-  event.preventDefault;
+  event.preventDefault();
   const email = form.elements.email.value;
   const message = form.elements.message.value;
   if (email.length && message.length) {
     console.log(inputResult());
     form.reset();
     localStorage.removeItem(KEY);
-  }
-}
-function autoFill() {
-  const text = JSON.parse(localStorage.getItem(KEY));
-  if (text !== null) {
-    form.elements.email.value = text.email;
-    form.elements.message.value = text.message;
   }
 }
